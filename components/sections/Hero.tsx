@@ -210,7 +210,10 @@ export function Hero() {
           {t.hero.stats.map((s, i) => (
             <div key={i} className="flex flex-col items-center gap-1 px-4">
               <span className="font-display font-bold text-2xl md:text-3xl text-white">
-                <AnimatedCounter value={s.value} suffix={s.suffix} delay={2 + i * 0.2} />
+                {s.display
+                  ? <span>{s.display}</span>
+                  : <AnimatedCounter value={s.value} suffix={s.suffix} delay={2 + i * 0.2} />
+                }
               </span>
               <span className="text-xs text-white/35 text-center leading-tight">{s.label}</span>
             </div>

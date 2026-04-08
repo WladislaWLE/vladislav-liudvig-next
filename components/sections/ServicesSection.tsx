@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, Bot, Globe, Building2, CreditCard, ArrowRight, X, Send, Mail, Instagram, MessageSquare } from "lucide-react";
+import { Zap, Bot, Globe, Building2, CreditCard, BarChart2, ArrowRight, X, Send, Mail, Instagram, MessageSquare, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-  Zap, Bot, Globe, Building2, CreditCard,
+  Zap, Bot, Globe, Building2, CreditCard, BarChart2,
 };
 
 interface ServiceItem {
@@ -107,6 +107,33 @@ export function ServicesSection({ limit }: { limit?: number }) {
           <ServiceCard key={item.id} item={item} index={i} onOpen={setSelected} />
         ))}
       </div>
+
+      {/* Custom request card */}
+      {!limit && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="col-span-full mt-2"
+        >
+          <div className="glass-card rounded-2xl p-7 flex flex-col md:flex-row items-center justify-between gap-6 border-dashed border-white/10">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                <Sparkles size={20} className="text-white/40" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white mb-1">{t.services.customTitle}</h3>
+                <p className="text-sm text-white/45 max-w-md">{t.services.customDesc}</p>
+              </div>
+            </div>
+            <Link href="/contact" className="btn-outline text-sm shrink-0 flex items-center gap-2">
+              {t.services.customCta}
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </motion.div>
+      )}
 
       {limit && (
         <motion.div

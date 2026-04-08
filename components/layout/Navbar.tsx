@@ -28,7 +28,8 @@ export function Navbar() {
     { href: "/", label: t.nav.home },
     { href: "/about", label: t.nav.about },
     { href: "/services", label: t.nav.services },
-    { href: "/products", label: t.nav.products },
+    { href: "/pricing", label: t.pricing?.tag ?? "Прайс" },
+    { href: "/blog", label: t.nav.blog },
     { href: "/contact", label: t.nav.contact },
   ];
 

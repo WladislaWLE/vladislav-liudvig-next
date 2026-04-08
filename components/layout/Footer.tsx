@@ -21,6 +21,8 @@ export function Footer() {
     { icon: Instagram, label: "Instagram", href: "https://instagram.com/wladislaw_le" },
   ];
 
+  const tgChannelUrl = "https://t.me/vladislavliudvig";
+
   return (
     <footer className="relative mt-20 border-t border-border overflow-hidden">
       {/* Background glow */}
@@ -75,7 +77,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company info */}
+          {/* Company info + TG channel */}
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-4">
               {t.footer.company}
@@ -90,6 +92,19 @@ export function Footer() {
                 mail@vladislavliudvig.com
               </a>
             </div>
+            {/* Telegram channel promo */}
+            <a
+              href={tgChannelUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 flex items-center gap-2.5 px-4 py-3 rounded-xl border border-accent/25 bg-accent/6 hover:bg-accent/12 hover:border-accent/40 transition-all group w-fit"
+            >
+              <Send size={14} className="text-accent shrink-0" />
+              <div>
+                <p className="text-xs font-semibold text-accent">{t.footer.channel}</p>
+                <p className="text-xs text-white/35">{t.footer.channelHandle}</p>
+              </div>
+            </a>
           </div>
         </div>
 
