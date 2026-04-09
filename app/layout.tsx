@@ -45,11 +45,8 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-  verification: {
-    // Добавь сюда коды верификации после регистрации в Google Search Console и Яндекс.Вебмастер
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-  },
+  // Верификация через DNS TXT на Cloudflare — meta-теги не нужны
+  // Google Search Console и Яндекс.Вебмастер подтверждены через DNS
 };
 
 const jsonLd = {
