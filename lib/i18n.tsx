@@ -43,7 +43,7 @@ export const translations = {
       ],
       quote: "Технологии должны освобождать время и приносить деньги — а не создавать новые головоломки.",
       stats: [
-        { value: 0, display: "🌍", suffix: "", label: "Клиенты по всему миру" },
+        { value: 3, display: "", suffix: "+", label: "Клиента" },
         { value: 2, display: "", suffix: "+", label: "Лет опыта" },
         { value: 100, display: "", suffix: "%", label: "Выполненных проектов" },
         { value: 3, display: "", suffix: "", label: "Континента" },
@@ -387,7 +387,7 @@ export const translations = {
       ],
       quote: "Technology should free your time and generate money — not create new headaches.",
       stats: [
-        { value: 0, display: "🌍", suffix: "", label: "Clients Worldwide" },
+        { value: 3, display: "", suffix: "+", label: "Clients" },
         { value: 2, display: "", suffix: "+", label: "Years Experience" },
         { value: 100, display: "", suffix: "%", label: "Projects Completed" },
         { value: 3, display: "", suffix: "", label: "Continents" },

@@ -64,7 +64,7 @@ export function ServicesSection({ limit }: { limit?: number }) {
   const contactOptions = [
     { icon: Send, label: "Telegram", href: "https://t.me/wladislaw_le", color: "hover:border-blue-400/40 hover:text-blue-400" },
     { icon: Instagram, label: "Instagram", href: "https://instagram.com/wladislaw_le", color: "hover:border-pink-400/40 hover:text-pink-400" },
-    { icon: MessageSquare, label: "WhatsApp", href: "https://wa.me/message/PLACEHOLDER", color: "hover:border-green-400/40 hover:text-green-400" },
+    { icon: MessageSquare, label: "WhatsApp", href: "https://wa.me/79501365214", color: "hover:border-green-400/40 hover:text-green-400" },
     { icon: Mail, label: "Email", href: "mailto:mail@vladislavliudvig.com", color: "hover:border-red-400/40 hover:text-red-400" },
   ];
 

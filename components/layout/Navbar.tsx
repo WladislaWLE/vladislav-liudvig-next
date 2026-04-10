@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -49,11 +50,13 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-9 h-9">
-              <div className="absolute inset-0 rounded-xl bg-accent/20 group-hover:bg-accent/30 transition-colors" />
-              <div className="absolute inset-[3px] rounded-lg bg-accent flex items-center justify-center">
-                <span className="text-white font-display font-bold text-sm leading-none">VL</span>
-              </div>
+            <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-accent/10">
+              <Image
+                src="/vl-logo.png"
+                alt="VL"
+                fill
+                className="object-cover"
+              />
             </div>
             <span className="font-display font-semibold text-base text-white/90 group-hover:text-white transition-colors">
               Vladislav Liudvig

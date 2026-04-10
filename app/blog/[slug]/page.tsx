@@ -275,7 +275,9 @@ function renderContent(md: string) {
               return (
                 <tr key={ri} className="border-b border-white/5 hover:bg-white/3 transition-colors">
                   {cells.map((cell: string, ci: number) => (
-                    <td key={ci} className="px-4 py-3 text-white/60 border border-white/8">{cell}</td>
+                    <td key={ci} className="px-4 py-3 text-white/60 border border-white/8"
+                      dangerouslySetInnerHTML={{ __html: cell.replace(/\*\*(.+?)\*\*/g, "<strong class='text-white/90'>$1</strong>") }}
+                    />
                   ))}
                 </tr>
               );
@@ -360,10 +362,10 @@ export default async function BlogPostPage({
         {/* Back link */}
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors mb-10"
+          className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-xl border border-white/10 bg-white/4 text-white/60 hover:text-white hover:border-white/20 hover:bg-white/8 transition-all mb-10"
         >
           <ArrowLeft size={15} />
-          Все статьи
+          Назад к блогу
         </Link>
 
         {/* Header */}

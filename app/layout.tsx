@@ -96,6 +96,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/vl-logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/vl-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script

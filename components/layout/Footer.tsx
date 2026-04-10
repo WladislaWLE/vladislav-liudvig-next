@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Send, Mail, Instagram } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
@@ -33,11 +34,8 @@ export function Footer() {
           {/* Brand column */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3 w-fit group">
-              <div className="relative w-9 h-9">
-                <div className="absolute inset-0 rounded-xl bg-accent/20" />
-                <div className="absolute inset-[3px] rounded-lg bg-accent flex items-center justify-center">
-                  <span className="text-white font-display font-bold text-sm">VL</span>
-                </div>
+              <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-accent/10">
+                <Image src="/vl-logo.png" alt="VL" fill className="object-cover" />
               </div>
               <span className="font-display font-semibold text-white/80">Vladislav Liudvig</span>
             </Link>
