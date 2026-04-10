@@ -6,6 +6,11 @@ import { Footer } from "@/components/layout/Footer";
 import { AIChatWidget } from "@/components/ui/AIChatWidget";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/vl-logo.png",
+    shortcut: "/vl-logo.png",
+    apple: "/vl-logo.png",
+  },
   title: {
     default: "Vladislav Liudvig — Автоматизация бизнеса, чат-боты, сайты, регистрация в США",
     template: "%s | Vladislav Liudvig",

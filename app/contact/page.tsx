@@ -58,7 +58,7 @@ export default function ContactPage() {
       icon: MessageSquare,
       label: "WhatsApp",
       value: t.contact.channels.whatsapp,
-      href: "https://wa.me/message/PLACEHOLDER",
+      href: "https://wa.me/79501365214",
       color: "hover:border-green-400/40 hover:bg-green-400/5 hover:text-green-400",
     },
   ];
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder={t.contact.form.namePlaceholder}
                     required
-                    className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 outline-none focus:border-accent/40 focus:bg-accent/3 transition-all"
+                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus:border-accent/40 focus:bg-[#0a1628] transition-all"
                   />
                 </div>
 
@@ -144,7 +144,7 @@ export default function ContactPage() {
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder={t.contact.form.emailPlaceholder}
                     required
-                    className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 outline-none focus:border-accent/40 focus:bg-accent/3 transition-all"
+                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus:border-accent/40 focus:bg-[#0a1628] transition-all"
                   />
                 </div>
 
@@ -159,7 +159,7 @@ export default function ContactPage() {
                     placeholder={t.contact.form.messagePlaceholder}
                     required
                     rows={5}
-                    className="w-full bg-white/4 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 outline-none focus:border-accent/40 focus:bg-accent/3 transition-all resize-none"
+                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus:border-accent/40 focus:bg-[#0a1628] transition-all resize-none"
                   />
                 </div>
 

@@ -1,0 +1,415 @@
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { ArrowLeft, Clock, Calendar, Tag } from "lucide-react";
+
+interface PostMeta {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  readTime: string;
+  keywords: string[];
+}
+
+interface Post extends PostMeta {
+  content: string;
+}
+
+const posts: Post[] = [
+  {
+    slug: "automation-saves-time",
+    title: "Как автоматизация сохранила 30 часов в неделю для digital-агентства",
+    excerpt: "Разбираем реальный кейс: что было до, что стало после и сколько стоила автоматизация рутинной отчётности.",
+    date: "2026-03-15",
+    category: "Автоматизация",
+    readTime: "5 мин",
+    keywords: ["автоматизация бизнеса", "workflow", "экономия времени", "digital агентство"],
+    content: `
+## Проблема: 20+ часов в неделю на ручную отчётность
+
+Digital-агентство из 8 человек. Каждый понедельник — один и тот же ритуал: маркетолог вручную выгружает данные из трёх источников (Google Ads, Meta, Яндекс.Директ), аналитик их сводит в таблицу, менеджер отправляет клиентам PDF-отчёты вручную.
+
+Итого: 20–25 часов в неделю только на сбор и форматирование данных. Никакой аналитики, только механика.
+
+## Что внедрили
+
+Автоматизация на базе n8n + Google Sheets + Telegram.
+
+**Схема работы:**
+1. Каждую ночь n8n подключается к API всех рекламных кабинетов
+2. Данные нормализуются и пишутся в единую Google-таблицу
+3. Скрипт формирует сводку по каждому клиенту
+4. В 9:00 понедельника менеджер получает в Telegram: готовые отчёты + ссылки на дашборды
+5. PDF-версии генерируются автоматически и уходят клиентам
+
+**Дополнительно** настроили алёрты: если CTR падает ниже порога или расход выходит за рамки бюджета — уведомление приходит в моменте, а не в конце недели.
+
+## Результат
+
+| Метрика | До | После |
+|---|---|---|
+| Время на отчётность | 20–25 ч/нед | 0 ч (автомат) |
+| Скорость реакции на аномалии | 3–5 дней | < 2 часов |
+| Ошибки в данных | ~15% недель | 0 |
+| Стоимость внедрения | — | $800 |
+
+Окупаемость — за 2 недели, если считать по стоимости рабочего времени.
+
+## Что важно понять
+
+Автоматизация — это не «поставить программу и забыть». Это инженерная работа: разобраться в данных, продумать исключения, протестировать краевые случаи.
+
+Но когда это сделано правильно — вы получаете систему, которая работает без вашего участия 24/7 и никогда не устаёт.
+
+Если хотите разобрать свою ситуацию — напишите мне в Telegram, обсудим конкретику.
+    `,
+  },
+  {
+    slug: "chatbot-sales-2026",
+    title: "Telegram-бот вместо менеджера: миф или реальность в 2026?",
+    excerpt: "Можно ли заменить менеджера по продажам чат-ботом? Разбираем кейсы, цифры и конкретные сценарии.",
+    date: "2026-03-28",
+    category: "Чат-боты",
+    readTime: "7 мин",
+    keywords: ["telegram бот", "чат-бот для продаж", "автоматизация продаж", "лидогенерация"],
+    content: `
+## Короткий ответ: нет. Длинный — зависит от того, что вы продаёте.
+
+Каждую неделю кто-то спрашивает: «Можно сделать бота, который будет продавать вместо менеджера?» Давайте разберём честно, без маркетинга.
+
+## Что бот делает лучше человека
+
+**1. Скорость первого ответа.** Клиент написал в 2:30 ночи — бот ответил мгновенно. Человек ответит утром. По данным исследований, вероятность конверсии падает на 80% если первый ответ приходит спустя 5 минут.
+
+**2. Квалификация лидов.** Бот задаёт одни и те же вопросы без усталости и без «ну ладно, пропустим». Только квалифицированные лиды идут дальше.
+
+**3. Онбординг и FAQ.** 60–70% входящих вопросов в большинстве бизнесов — одно и то же. Бот отвечает на них мгновенно, 24/7, без нагрузки на команду.
+
+**4. Прогрев.** Серия сообщений с полезным контентом → демонстрация ценности → оффер. Конверсия в некоторых нишах выше, чем при холодном звонке.
+
+## Что бот не умеет
+
+**1. Сложные переговоры.** Когда клиент говорит «дорого» — это не возражение, это начало диалога. Бот не чувствует контекст, не умеет импровизировать.
+
+**2. Высокочековые продажи.** Корпоративный клиент с бюджетом $50k+ хочет говорить с человеком. Бот на этом этапе — раздражитель.
+
+**3. Эмоциональные продажи.** Люксовые товары, услуги коучинга, персональные консультации — там важен человеческий контакт.
+
+## Реальный кейс: юридическое агентство
+
+До: менеджер обрабатывал 30–40 входящих заявок в день, из которых 70% — нецелевые.
+
+После внедрения бота:
+- Бот квалифицирует: задаёт 5 вопросов о ситуации клиента
+- Нецелевые получают бесплатный мини-гайд и уходят
+- Целевые получают слот в календаре менеджера
+- Менеджер общается только с теми, кто готов платить
+
+Результат: менеджер проводит на 60% меньше времени на квалификацию, конверсия выросла в 2.3 раза.
+
+## Итог
+
+Бот — не замена менеджера. Это усилитель. Он берёт на себя механику, чтобы человек занимался тем, что умеет только человек.
+
+Правильная связка: бот квалифицирует и прогревает → менеджер закрывает.
+
+Хотите обсудить, как это может работать в вашем бизнесе? Напишите мне.
+    `,
+  },
+  {
+    slug: "us-llc-guide-2026",
+    title: "Полный гайд: открываем LLC в США в 2026 году",
+    excerpt: "Пошаговое руководство: выбор штата, документы, EIN, банковский счёт — всё что нужно предпринимателю.",
+    date: "2026-04-05",
+    category: "США",
+    readTime: "12 мин",
+    keywords: ["LLC в США", "регистрация компании США", "EIN", "открыть бизнес в США 2026"],
+    content: `
+## Зачем LLC в США в 2026?
+
+Американская компания открывает доступ к:
+- Платёжным системам (Stripe, PayPal Business, Mercury)
+- Международным клиентам, которые доверяют US-юрисдикции
+- Инвестиционному рынку США
+- Налоговой оптимизации при правильной структуре
+
+Это не магия, но это реальный инструмент. Разберём, как его получить.
+
+## Шаг 1: Выбор штата
+
+Самые популярные для нерезидентов:
+
+**Wyoming (Вайоминг)** — наш выбор для большинства клиентов:
+- Минимальная государственная пошлина ($100/год)
+- Нет корпоративного налога штата
+- Сильная защита участников LLC
+- Нет требований к раскрытию бенефициаров
+
+**Delaware** — если планируете привлекать венчурные инвестиции. Иначе переплата.
+
+**Florida, Texas** — если физически присутствуете в штате.
+
+## Шаг 2: Registered Agent
+
+Каждая компания в США должна иметь Registered Agent — местное лицо или компания для получения официальной корреспонденции.
+
+Стоимость: $50–$150 в год. Мы работаем с проверенными провайдерами.
+
+## Шаг 3: Регистрация — Articles of Organization
+
+Подаём в Secretary of State выбранного штата:
+- Название компании
+- Адрес registered agent
+- Имена участников (в Вайоминге — не обязательно публично)
+
+Срок обработки: 3–5 рабочих дней (стандарт), 1 день (expedited за доплату).
+
+## Шаг 4: EIN — налоговый номер
+
+EIN (Employer Identification Number) — аналог ИНН для компании. Нужен для:
+- Открытия банковского счёта
+- Работы с американскими клиентами
+- Подачи налоговой отчётности
+
+Получаем через IRS. Для нерезидентов без SSN — через форму SS-4 по факсу или почте. Срок: 4–8 недель (почта) или 1–2 дня (фax, если правильно оформить).
+
+Мы умеем делать это быстро.
+
+## Шаг 5: Банковский счёт
+
+Самый сложный этап для нерезидентов. Традиционные банки (Chase, Bank of America) требуют личного визита в США.
+
+**Альтернативы:**
+- **Mercury** — лучший вариант для стартапов и онлайн-бизнеса. Открывается онлайн, нет минимального баланса
+- **Relay** — хорош для малого бизнеса с несколькими счетами
+- **Wise Business** — если нужна мультивалютность
+
+Важно: банк потребует Articles of Organization + EIN + личные документы владельца.
+
+## Шаг 6: Operating Agreement
+
+Это внутренний документ компании, регулирующий права и обязанности участников. Не требуется для подачи в штат, но критичен для:
+- Открытия счёта (некоторые банки просят)
+- Работы с инвесторами
+- Разрешения споров
+
+Мы составляем Operating Agreement под конкретную ситуацию клиента.
+
+## Стоимость и сроки
+
+| Этап | Стоимость | Срок |
+|---|---|---|
+| Регистрация в Вайоминге | $100 (пошлина штата) | 3–5 дней |
+| Registered Agent (год) | $50–$100 | — |
+| EIN | $0 (госпошлина отсутствует) | 1–8 недель |
+| Открытие счёта в Mercury | $0 | 3–7 дней |
+| **Сопровождение под ключ** | **от $300** | **2–3 недели** |
+
+## Что дальше после открытия?
+
+1. **Annual Report** — ежегодный отчёт в штат (Вайоминг: $60/год)
+2. **Налоговая отчётность** — LLC по умолчанию «прозрачная» для налогов (pass-through). Нерезиденты платят налоги по законам своей страны
+3. **Compliance** — следите за дедлайнами
+
+Если не хотите разбираться во всём этом самостоятельно — я делаю всё под ключ. Напишите мне в Telegram или через форму на сайте.
+    `,
+  },
+];
+
+function getPost(slug: string): Post | undefined {
+  return posts.find((p) => p.slug === slug);
+}
+
+export function generateStaticParams() {
+  return posts.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPost(slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.excerpt,
+    keywords: post.keywords,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      publishedTime: post.date,
+    },
+  };
+}
+
+function renderContent(md: string) {
+  const lines = md.trim().split("\n");
+  const elements: React.ReactNode[] = [];
+  let key = 0;
+
+  let tableRows: string[] = [];
+  let inTable = false;
+
+  const flushTable = () => {
+    if (tableRows.length < 2) { tableRows = []; inTable = false; return; }
+    const [header, , ...body] = tableRows;
+    const heads = (header as string).split("|").map((c: string) => c.trim()).filter(Boolean);
+    elements.push(
+      <div key={key++} className="overflow-x-auto my-6">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr>
+              {heads.map((h: string, i: number) => (
+                <th key={i} className="text-left px-4 py-3 bg-white/5 border border-white/10 text-white/80 font-semibold">{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {body.map((row: string, ri: number) => {
+              const cells = row.split("|").map((c: string) => c.trim()).filter(Boolean);
+              return (
+                <tr key={ri} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                  {cells.map((cell: string, ci: number) => (
+                    <td key={ci} className="px-4 py-3 text-white/60 border border-white/8">{cell}</td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+    tableRows = [];
+    inTable = false;
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Table detection
+    if (line.startsWith("|")) {
+      inTable = true;
+      tableRows.push(line);
+      continue;
+    }
+    if (inTable) {
+      flushTable();
+    }
+
+    if (!line.trim()) {
+      elements.push(<div key={key++} className="h-3" />);
+      continue;
+    }
+
+    if (line.startsWith("## ")) {
+      elements.push(
+        <h2 key={key++} className="font-display font-bold text-2xl text-white mt-10 mb-4 first:mt-0">
+          {line.replace("## ", "")}
+        </h2>
+      );
+    } else if (line.startsWith("**") && line.endsWith("**")) {
+      elements.push(
+        <p key={key++} className="font-semibold text-white/90 mt-4 mb-1">
+          {line.replace(/\*\*/g, "")}
+        </p>
+      );
+    } else if (line.startsWith("- ")) {
+      elements.push(
+        <li key={key++} className="flex gap-2 text-white/70 leading-relaxed ml-4">
+          <span className="text-accent mt-1.5 shrink-0">•</span>
+          <span dangerouslySetInnerHTML={{ __html: line.replace("- ", "").replace(/\*\*(.+?)\*\*/g, "<strong class='text-white/90'>$1</strong>") }} />
+        </li>
+      );
+    } else {
+      elements.push(
+        <p key={key++} className="text-white/65 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: line.replace(/\*\*(.+?)\*\*/g, "<strong class='text-white/90'>$1</strong>") }}
+        />
+      );
+    }
+  }
+
+  if (inTable) flushTable();
+
+  return elements;
+}
+
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = getPost(slug);
+  if (!post) notFound();
+
+  const dateFormatted = new Date(post.date).toLocaleDateString("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  return (
+    <div className="pt-28 pb-24">
+      <div className="max-w-3xl mx-auto px-6">
+        {/* Back link */}
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors mb-10"
+        >
+          <ArrowLeft size={15} />
+          Все статьи
+        </Link>
+
+        {/* Header */}
+        <div className="mb-10">
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
+              <Tag size={11} />
+              {post.category}
+            </span>
+            <span className="flex items-center gap-1.5 text-xs text-white/35">
+              <Calendar size={11} />
+              {dateFormatted}
+            </span>
+            <span className="flex items-center gap-1.5 text-xs text-white/35">
+              <Clock size={11} />
+              {post.readTime}
+            </span>
+          </div>
+
+          <h1 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-5">
+            {post.title}
+          </h1>
+
+          <p className="text-lg text-white/55 leading-relaxed">
+            {post.excerpt}
+          </p>
+        </div>
+
+        <div className="glow-divider mb-10" />
+
+        {/* Content */}
+        <article className="space-y-2">
+          {renderContent(post.content)}
+        </article>
+
+        <div className="glow-divider mt-14 mb-10" />
+
+        {/* CTA */}
+        <div className="glass-card rounded-3xl p-8 text-center">
+          <p className="font-display font-bold text-xl text-white mb-2">Есть вопросы или хотите обсудить проект?</p>
+          <p className="text-white/50 text-sm mb-6">Напишите мне — разберём вашу ситуацию конкретно.</p>
+          <Link href="/contact" className="btn-primary inline-flex items-center justify-center text-sm">
+            Написать Владиславу
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

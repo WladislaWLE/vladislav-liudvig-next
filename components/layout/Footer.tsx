@@ -112,9 +112,6 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/25">
           <span>{t.footer.rights}</span>
-          <span className="hidden md:block">
-            Built with Next.js · Deployed on Vercel
-          </span>
         </div>
       </div>
     </footer>
