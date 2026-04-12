@@ -59,7 +59,7 @@ export function Navbar() {
               />
               <div className="absolute inset-[1.5px] rounded-full overflow-hidden bg-[#010714]">
                 <Image
-                  src="/vl-logo.png"
+                  src="/vl-photo.jpg"
                   alt="Vladislav Liudvig"
                   fill
                   priority

@@ -43,7 +43,7 @@ export function Footer() {
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 />
                 <div className="absolute inset-[1.5px] rounded-full overflow-hidden bg-[#010714]">
-                  <Image src="/vl-logo.png" alt="VL" fill className="object-cover" />
+                  <Image src="/vl-photo.jpg" alt="Vladislav Liudvig" fill className="object-cover" />
                 </div>
               </div>
               <span className="font-display font-semibold text-white/80">Vladislav Liudvig</span>
