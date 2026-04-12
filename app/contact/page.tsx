@@ -129,7 +129,7 @@ export default function ContactPage() {
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder={t.contact.form.namePlaceholder}
                     required
-                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus:border-accent/40 focus:bg-[#0a1628] transition-all"
+                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:border-accent/50 focus:bg-[#0a1628] transition-all"
                   />
                 </div>
 
@@ -144,7 +144,7 @@ export default function ContactPage() {
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder={t.contact.form.emailPlaceholder}
                     required
-                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus:border-accent/40 focus:bg-[#0a1628] transition-all"
+                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:border-accent/50 focus:bg-[#0a1628] transition-all"
                   />
                 </div>
 
@@ -159,12 +159,13 @@ export default function ContactPage() {
                     placeholder={t.contact.form.messagePlaceholder}
                     required
                     rows={5}
-                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus:border-accent/40 focus:bg-[#0a1628] transition-all resize-none"
+                    maxLength={5000}
+                    className="w-full bg-[#0d1524] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none focus-visible:ring-2 focus-visible:ring-accent/60 focus-visible:border-accent/50 focus:bg-[#0a1628] transition-all resize-none"
                   />
                 </div>
 
                 {status === "error" && (
-                  <div className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400">
+                  <div role="alert" className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-sm text-red-400">
                     <AlertCircle size={15} />
                     {t.contact.form.errorDesc}
                   </div>
@@ -214,7 +215,7 @@ export default function ContactPage() {
                       <ch.icon size={17} />
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-wider font-semibold text-white/30 mb-0.5">{ch.label}</p>
+                      <p className="text-xs uppercase tracking-wider font-semibold text-white/50 mb-0.5">{ch.label}</p>
                       <p className="text-sm font-medium text-white/70">{ch.value}</p>
                     </div>
                   </a>

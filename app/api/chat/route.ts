@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -37,6 +38,18 @@ Rules:
 - Detect language from user messages and respond in the SAME language`;
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const rl = checkRateLimit(ip, "chat", 10, 60_000); // 10 req/min per IP
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests" },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rl.retryAfterSec) },
+      }
+    );
+  }
+
   try {
     const { messages, lang } = await req.json();
 
@@ -46,7 +59,9 @@ export async function POST(req: NextRequest) {
 
     // Build message history for Claude (exclude welcome message which is pre-set)
     const conversationHistory = messages
-      .filter((m: { role: string; content: string }) => m.role === "user" || (m.role === "assistant" && messages.indexOf(m) > 0))
+      .filter((m: { role: string; content: string }, index: number) =>
+        m.role === "user" || (m.role === "assistant" && index > 0)
+      )
       .map((m: { role: string; content: string }) => ({
         role: m.role as "user" | "assistant",
         content: m.content,

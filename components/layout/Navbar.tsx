@@ -50,13 +50,22 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-accent/10">
-              <Image
-                src="/vl-logo.png"
-                alt="VL"
-                fill
-                className="object-cover"
+            <div className="relative w-9 h-9 shrink-0">
+              <motion.div
+                className="absolute inset-[-2px] rounded-full"
+                style={{ background: "conic-gradient(from 0deg, #3b7cf4, #8b5cf6, #3b7cf4)" }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
               />
+              <div className="absolute inset-[1.5px] rounded-full overflow-hidden bg-[#010714]">
+                <Image
+                  src="/vl-logo.png"
+                  alt="Vladislav Liudvig"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </div>
             </div>
             <span className="font-display font-semibold text-base text-white/90 group-hover:text-white transition-colors">
               Vladislav Liudvig
@@ -64,13 +73,14 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1" aria-label="Основная навигация">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
                     isActive
@@ -112,6 +122,9 @@ export function Navbar() {
             {/* Burger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Открыть меню навигации"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
               className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl border border-white/10 text-white/70 hover:text-white transition-colors"
             >
               {menuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -134,7 +147,7 @@ export function Navbar() {
               className="absolute inset-0 bg-bg/95 backdrop-blur-xl"
               onClick={() => setMenuOpen(false)}
             />
-            <div className="relative z-10 pt-24 px-6 flex flex-col gap-2">
+            <div id="mobile-menu" className="relative z-10 pt-24 px-6 flex flex-col gap-2">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}

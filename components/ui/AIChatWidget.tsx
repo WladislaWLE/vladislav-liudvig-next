@@ -88,7 +88,7 @@ export function AIChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-24 right-5 md:right-8 z-50 w-[340px] md:w-[380px] flex flex-col"
+            className="fixed bottom-24 right-2.5 md:right-8 z-50 w-[calc(100vw-20px)] max-w-[380px] flex flex-col"
             style={{ maxHeight: "calc(100vh - 140px)" }}
           >
             <div className="glass-card-bright rounded-2xl flex flex-col overflow-hidden shadow-glow-md h-full">
@@ -208,7 +208,7 @@ export function AIChatWidget() {
         {open ? (
           <>
             <X size={16} />
-            <span className="text-sm font-medium">Закрыть</span>
+            <span className="text-sm font-medium">{t.chat.close}</span>
           </>
         ) : (
           <>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Send, Mail, Instagram } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
@@ -34,8 +35,16 @@ export function Footer() {
           {/* Brand column */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3 w-fit group">
-              <div className="relative w-9 h-9 rounded-xl overflow-hidden bg-accent/10">
-                <Image src="/vl-logo.png" alt="VL" fill className="object-cover" />
+              <div className="relative w-9 h-9 shrink-0">
+                <motion.div
+                  className="absolute inset-[-2px] rounded-full"
+                  style={{ background: "conic-gradient(from 0deg, #3b7cf4, #8b5cf6, #3b7cf4)" }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                />
+                <div className="absolute inset-[1.5px] rounded-full overflow-hidden bg-[#010714]">
+                  <Image src="/vl-logo.png" alt="VL" fill className="object-cover" />
+                </div>
               </div>
               <span className="font-display font-semibold text-white/80">Vladislav Liudvig</span>
             </Link>
@@ -47,7 +56,7 @@ export function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-white/8 text-white/40 hover:text-white hover:border-accent/40 hover:bg-accent/10 transition-all"
+                  className="w-11 h-11 flex items-center justify-center rounded-xl border border-white/8 text-white/40 hover:text-white hover:border-accent/40 hover:bg-accent/10 transition-all"
                   aria-label={s.label}
                 >
                   <s.icon size={16} />

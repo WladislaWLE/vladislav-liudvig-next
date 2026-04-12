@@ -15,6 +15,7 @@ interface BlogPost {
   category: string;
   readTime: string;
   content: string;
+  keywords?: string[];
 }
 
 interface PricingItem {
@@ -52,6 +53,33 @@ const defaultBlog: BlogPost[] = [
     date: "2026-04-05",
     category: "США",
     readTime: "12 мин",
+    content: "Контент статьи...",
+  },
+  {
+    slug: "ai-agents-2026",
+    title: "AI-агенты в 2026: что умеют и как использовать в бизнесе",
+    excerpt: "Разбираем, что такое AI-агенты, чем они отличаются от чат-ботов и как внедрить их в процессы.",
+    date: "2026-04-08",
+    category: "AI",
+    readTime: "8 мин",
+    content: "Контент статьи...",
+  },
+  {
+    slug: "us-market-entry-2026",
+    title: "Как запустить бизнес на рынке США без офиса и визы",
+    excerpt: "Минимальный стек для работы с американским рынком: юрлицо, банк, инструменты.",
+    date: "2026-04-09",
+    category: "США",
+    readTime: "9 мин",
+    content: "Контент статьи...",
+  },
+  {
+    slug: "website-conversion-2026",
+    title: "7 элементов сайта, которые влияют на конверсию",
+    excerpt: "Разбираем конкретные паттерны: что делает сайт продающим, а не просто красивым.",
+    date: "2026-04-10",
+    category: "Сайты",
+    readTime: "6 мин",
     content: "Контент статьи...",
   },
 ];
@@ -95,10 +123,10 @@ function savePricing(items: PricingItem[]) {
 function slugify(title: string): string {
   return title
     .toLowerCase()
-    .replace(/[а-яёa-z0-9]+/gi, (m) => m)
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "")
     .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
     .slice(0, 60);
 }
 

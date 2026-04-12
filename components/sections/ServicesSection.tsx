@@ -20,7 +20,7 @@ interface ServiceItem {
   icon: string;
 }
 
-function ServiceCard({ item, index, onOpen }: { item: ServiceItem; index: number; onOpen: (s: ServiceItem) => void }) {
+function ServiceCard({ item, index, onOpen, learnMore }: { item: ServiceItem; index: number; onOpen: (s: ServiceItem) => void; learnMore: string }) {
   const Icon = iconMap[item.icon] || Zap;
 
   return (
@@ -48,7 +48,7 @@ function ServiceCard({ item, index, onOpen }: { item: ServiceItem; index: number
       </div>
 
       <button className="flex items-center gap-1.5 text-xs font-semibold text-accent/70 group-hover:text-accent transition-colors w-fit">
-        Подробнее
+        {learnMore}
         <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
       </button>
     </motion.div>
@@ -104,7 +104,7 @@ export function ServicesSection({ limit }: { limit?: number }) {
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {services.map((item, i) => (
-          <ServiceCard key={item.id} item={item} index={i} onOpen={setSelected} />
+          <ServiceCard key={item.id} item={item} index={i} onOpen={setSelected} learnMore={t.services.learnMore} />
         ))}
       </div>
 
@@ -171,7 +171,8 @@ export function ServicesSection({ limit }: { limit?: number }) {
                 {/* Close button */}
                 <button
                   onClick={() => setSelected(null)}
-                  className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all"
+                  aria-label="Закрыть"
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-all"
                 >
                   <X size={15} />
                 </button>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { I18nProvider } from "@/lib/i18n";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -28,16 +30,22 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vladislavliudvig.com"),
   alternates: {
     canonical: "https://vladislavliudvig.com",
-    languages: { "ru": "/", "en": "/" },
   },
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    alternateLocale: "en_US",
     siteName: "Vladislav Liudvig",
     title: "Vladislav Liudvig — Автоматизация бизнеса и цифровая инфраструктура",
     description: "Чат-боты, AI-системы, сайты, регистрация в США. Строю системы, которые освобождают время и приносят деньги.",
     url: "https://vladislavliudvig.com",
+    images: [
+      {
+        url: "https://vladislavliudvig.com/vl-photo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Vladislav Liudvig — Автоматизация бизнеса",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -60,6 +68,9 @@ const jsonLd = {
   name: "Vladislav Liudvig",
   alternateName: "Владислав Людвиг",
   url: "https://vladislavliudvig.com",
+  image: "https://vladislavliudvig.com/vl-photo.jpg",
+  email: "mail@vladislavliudvig.com",
+  telephone: "+79501365214",
   sameAs: [
     "https://t.me/wladislaw_le",
     "https://t.me/vladislavliudvig",
@@ -112,6 +123,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <AIChatWidget />
         </I18nProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

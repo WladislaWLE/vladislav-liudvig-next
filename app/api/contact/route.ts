@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { neon } from "@neondatabase/serverless";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({
   name: z.string().min(1).max(100),
@@ -27,6 +28,18 @@ async function sendTelegramNotification(name: string, email: string, message: st
 }
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const rl = checkRateLimit(ip, "contact", 5, 3_600_000); // 5 req/hour per IP
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rl.retryAfterSec) },
+      }
+    );
+  }
+
   try {
     const body = await req.json();
     const { name, email, message } = schema.parse(body);
